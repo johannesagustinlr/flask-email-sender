@@ -12,9 +12,17 @@ class EmailSchedule(db.Model):
     timestamp = db.Column(db.DateTime, nullable=False)
     is_sent = db.Column(db.Boolean, default=False)
 
-    def __init__(self, event_id, email_subject):
+    def __init__(
+        self,
+        event_id,
+        email_subject,
+        email_content,
+        timestamp,
+    ):
         self.event_id = event_id
         self.email_subject = email_subject
+        self.email_content = email_content
+        self.timestamp = timestamp
 
     def __repr__(self):
         return f"{self.event_id}!"

@@ -1,0 +1,23 @@
+
+
+<table>
+    <tr>
+      <th>ID</th>
+        <th>Event ID</th>
+        <th>Email Subject</th>
+        <th>Email Content</th>
+        <th>Timestamp</th>
+        <th>Is sent?</th>
+      </tr>
+    {% for email in email_schedule %}
+    <tr>
+      <td>{{email.id}}</td>
+       <td>{{email.event_id}}</td>
+       <td>{{email.email_subject}}</td>
+       <td>{{email.email_content}}</td>
+       <td>{{email.timestamp}}</td>
+       <td>{{email.is_sent}}</td>
+    </tr>
+    {% endfor %}
+</table>
+    
