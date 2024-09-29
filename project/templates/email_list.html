@@ -1,23 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-<table>
-    <tr>
-      <th>ID</th>
-        <th>Event ID</th>
-        <th>Email Subject</th>
-        <th>Email Content</th>
-        <th>Timestamp</th>
-        <th>Is sent?</th>
-      </tr>
-    {% for email in email_schedule %}
-    <tr>
-      <td>{{email.id}}</td>
-       <td>{{email.event_id}}</td>
-       <td>{{email.email_subject}}</td>
-       <td>{{email.email_content}}</td>
-       <td>{{email.timestamp}}</td>
-       <td>{{email.is_sent}}</td>
-    </tr>
-    {% endfor %}
-</table>
-    
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.3s ease;
+        }
+
+        td {
+            word-wrap: break-word;
+        }
+
+        /* For mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Event ID</th>
+            <th>Email Subject</th>
+            <th>Email Content</th>
+            <th>Timestamp</th>
+            <th>Is Sent?</th>
+        </tr>
+        {% for email in email_schedule %}
+        <tr>
+            <td>{{email.id}}</td>
+            <td>{{email.event_id}}</td>
+            <td>{{email.email_subject}}</td>
+            <td>{{email.email_content}}</td>
+            <td>{{email.timestamp}}</td>
+            <td>{{email.is_sent}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
