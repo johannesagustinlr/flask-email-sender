@@ -9,6 +9,7 @@
 5. pip install -r requirements.txt
 6. flask run (for test) / gunicorn -w 4 -b 0.0.0.0:8000 project.app:app (for deployment)
 7. celery -A project.app.celery worker --loglevel=info (for email scheduler and queue)
+8. you can access via browser to input form localhost:5000 (flask run) / localhost:8000 (gunicorn)
 
 
 Note : 
