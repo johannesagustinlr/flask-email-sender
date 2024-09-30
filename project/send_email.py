@@ -8,15 +8,16 @@ load_dotenv()
 
 
 def send_email(receiver: str, subject: str, content: str) -> None:
+    print(receiver)
     server = os.getenv("SMTP_ENDPOINT")
     port = int(os.getenv("SMTP_PORT"))
     sender_email = os.getenv("SMTP_USERNAME")
-    receiver_email = receiver
+    receiver_email = receiver.split(", ")
     password = os.getenv("SMTP_PASSWORD")
     # Create the MIME message
     msg = MIMEMultipart()
     msg["From"] = sender_email
-    msg["To"] = receiver_email
+    msg["To"] = ", ".join(receiver_email)
     msg["Subject"] = subject
 
     body = content
