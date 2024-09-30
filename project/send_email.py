@@ -12,7 +12,7 @@ def send_email(receiver: str, subject: str, content: str) -> None:
     server = os.getenv("SMTP_ENDPOINT")
     port = int(os.getenv("SMTP_PORT"))
     sender_email = os.getenv("SMTP_USERNAME")
-    receiver_email = receiver.split(", ")
+    receiver_email = receiver.split(",")
     password = os.getenv("SMTP_PASSWORD")
     # Create the MIME message
     msg = MIMEMultipart()

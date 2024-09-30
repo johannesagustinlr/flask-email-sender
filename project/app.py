@@ -91,7 +91,10 @@ def save_emails():
             email_subject = request.form["email_subject"]
             email_content = request.form["email_content"]
             timestamp_str = request.form["timestamp"]
-            email_recipients = request.form["email_recipients"]
+            email_recipients = request.form["email_recipients"].replace(
+                " ",
+                "",
+            )
             schedule_datetime = datetime.strptime(
                 timestamp_str,
                 "%Y-%m-%dT%H:%M",
