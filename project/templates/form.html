@@ -94,7 +94,6 @@
     
     
 
-    <!-- Form to submit email scheduler -->
     <form method="POST" action="/save_emails">
         <h1>Email Scheduler</h1>
         <label for="event_id">Event ID:</label>
@@ -122,7 +121,9 @@
         </div>
         {% endif %}
         {% endwith %}
-    </form>
+        <a href="{{ url_for('save_emails_list') }}" class="button">Schedule List</a>
+    </form><br>
+    
 
 </body>
 

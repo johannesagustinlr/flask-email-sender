@@ -133,7 +133,7 @@ def email_scheduler(email_id):
     return f"Email {email_id} not found"
 
 
-@app.route("/email_save_list")
+@app.route("/save_emails_list")
 def save_emails_list():
     email_schedule = EmailSchedule.query.all()
     return render_template("email_list.html", email_schedule=email_schedule)
