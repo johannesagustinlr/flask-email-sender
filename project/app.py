@@ -12,6 +12,10 @@ from project.model import db, EmailSchedule
 from datetime import datetime
 from project.celery_worker import make_celery
 import pytz
+from dotenv import load_dotenv
+from project.send_email import send_email
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ["SECRET_KEY"]
@@ -87,6 +91,7 @@ def save_emails():
             email_subject = request.form["email_subject"]
             email_content = request.form["email_content"]
             timestamp_str = request.form["timestamp"]
+            email_recipients = request.form["email_recipients"]
             schedule_datetime = datetime.strptime(
                 timestamp_str,
                 "%Y-%m-%dT%H:%M",
@@ -97,6 +102,7 @@ def save_emails():
                 event_id=event_id,
                 email_subject=email_subject,
                 email_content=email_content,
+                email_recipients=email_recipients,
                 timestamp=schedule_sg_time,
             )
             db.session.add(email_schedule)
@@ -121,16 +127,24 @@ def save_emails():
 
 
 @celery.task
-def email_scheduler(email_id):
+def email_scheduler(email_id: int):
     email = EmailSchedule.query.get(email_id)
     if email:
         print(
             f"Sending email: {email.email_subject} to recipients",
         )
+        print(os.getenv("SEND_EMAIL", "False"))
+        if os.getenv("SEND_EMAIL", "False") == "True":
+
+            send_email(
+                receiver=email.email_recipients,
+                subject=email.email_subject,
+                content=email.email_content,
+            )
         email.is_sent = True
         db.session.commit()
-        return f"Email {email_id} sent"
-    return f"Email {email_id} not found"
+        return f"Email {email.email_subject} sent"
+    return f"Email with id:{email_id} not found"
 
 
 @app.route("/save_emails_list")
