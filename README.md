@@ -12,6 +12,6 @@
 
 
 Note : 
-1. No validation for email, currently able to save to database but might failed when send the email , can send more than 1, seperate it using comma
+1. No validation for email, currently able to save to database but might failed when send the email if email is not valid , can send more than 1, seperate it using comma
 2. currently event id and event subject is unique
 3. currently cant let event id, event subject, event content, event recipents, timestamp empty
