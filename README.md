@@ -4,7 +4,7 @@
 
 1. git clone this repo
 2. cd to this repo directory
-3. run python3 -b venv .venv
+3. run python3 -m venv .venv
 4. source .venv/bin/activate (linux)
 5. pip install -r requirements.txt
 6. flask run (for test) / gunicorn -w 4 -b 0.0.0.0:8000 project.app:app (for deployment)
